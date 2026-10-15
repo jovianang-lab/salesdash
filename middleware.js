@@ -13,7 +13,10 @@ export default function middleware(request) {
       const user = decoded.substring(0, colonIndex);
       const pwd = decoded.substring(colonIndex + 1);
 
-      if (user === 'test' && pwd === '123') {
+      const validUser = process.env.AUTH_USER;
+      const validPass = process.env.AUTH_PASS;
+
+      if (user === validUser && pwd === validPass) {
         return; // pass through to static file
       }
     }
